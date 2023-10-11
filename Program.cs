@@ -9,11 +9,11 @@ builder.Services.Configure<KestrelServerOptions>(options => {
 
 WebApplication app = builder.Build();
 
-if (app.Environment.IsDevelopment()) {
-    app.UseDeveloperExceptionPage();
-} else {
-    app.UseHttpsRedirection();
-}
+//if (app.Environment.IsDevelopment()) {
+//    app.UseDeveloperExceptionPage();
+//} else {
+//    app.UseHttpsRedirection();
+//}
 
 app.UseRouting();
 app.MapControllers();
