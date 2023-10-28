@@ -8,7 +8,6 @@ using IoFile = System.IO.File;
 using System.Xml.Serialization;
 
 using XmlToJson.Models;
-using System.Data;
 
 namespace XmlToJson.Controllers;
 
@@ -59,16 +58,9 @@ public class OperationsController : ControllerBase {
 
             var csvBuilder = new StringBuilder();
 
-            // Add a header row
-            //csvBuilder.AppendLine("ID,Barcode,Type,Category,Date,Zip");
-
-            // Iterate through the operations and generate CSV rows
             foreach (OperationModel operation in responseModel?.Operations ?? Enumerable.Empty<OperationModel>()) {
 
-                // Create a CSV row
                 string csvRow = $"{operation.Id},{operation.Barcode},{operation.Type},{operation.Category},{operation.Date},{operation.Zip}";
-
-                // Append the CSV row to the content
                 csvBuilder.AppendLine(csvRow);
             }
 
