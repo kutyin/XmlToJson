@@ -20,17 +20,18 @@ public class OperationsController : ControllerBase {
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get(string url, string partnerId, string password, long updSeq = 0) {
+    public async Task<IActionResult> Get(GetOperationParameters param) {
+
 
         using HttpClient client = new();
-        client.BaseAddress = new Uri(url);
+        client.BaseAddress = new Uri(param.Url);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
 
         string xmlContent = "<request " +
             "request_type=\"505\" " +
-            $"partner_id =\"{partnerId}\" " +
-            $"password =\"{password}\" " +
-            $"upd_seq=\"{updSeq}\">" +
+            $"partner_id =\"{param.PartnerId}\" " +
+            $"password =\"{param.Password}\" " +
+            $"upd_seq=\"{param.UpdSeq}\">" +
         "</request>";
 
         StringContent content = new(xmlContent, Encoding.UTF8, "application/xml");
@@ -54,11 +55,10 @@ public class OperationsController : ControllerBase {
         var csvBuilder = new StringBuilder();
 
         // Add a header row
-        csvBuilder.AppendLine("ID,Barcode,Type,Category,Date,Zip");
+        //csvBuilder.AppendLine("ID,Barcode,Type,Category,Date,Zip");
 
         // Iterate through the operations and generate CSV rows
-        foreach (var operation in responseModel.Operations) {
-
+        foreach (OperationModel operation in responseModel?.Operations ?? Enumerable.Empty<OperationModel>()) {
 
             // Create a CSV row
             string csvRow = $"{operation.Id},{operation.Barcode},{operation.Type},{operation.Category},{operation.Date},{operation.Zip}";
@@ -66,8 +66,6 @@ public class OperationsController : ControllerBase {
             // Append the CSV row to the content
             csvBuilder.AppendLine(csvRow);
         }
-
-
 
         return new ContentResult { ContentType = "text/plain", Content = csvBuilder.ToString(), StatusCode= 200};
     }

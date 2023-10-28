@@ -4,7 +4,7 @@ namespace XmlToJson.Models;
 
 [XmlRoot("operation")]
 public class OperationModel {
-    private int id = 0;
+    private string id = string.Empty;
 
     [XmlAttribute("barcode")]
     public string? Barcode { get; set; }
@@ -22,16 +22,12 @@ public class OperationModel {
     public int Zip { get; set; }
 
     [XmlIgnore]
-    public int Id {
+    public string Id {
         get {
-            if (id == 0) {
-                id = GetHashCode();
+            if (string.IsNullOrWhiteSpace(id)) {
+                id = HashHelper.HashValues(this);
             }
             return id;
         }
-    }
-
-    public override int GetHashCode() {
-        return HashCode.Combine(Barcode, Type, Category, Date, Zip);
     }
 }
