@@ -8,6 +8,7 @@ using IoFile = System.IO.File;
 using System.Xml.Serialization;
 
 using XmlToJson.Models;
+using System.Data;
 
 namespace XmlToJson.Controllers;
 
@@ -23,7 +24,7 @@ public class OperationsController : ControllerBase {
         this.logger = logger;
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<IActionResult> Get(GetOperationParameters param) {
 
         try {
@@ -83,7 +84,7 @@ public class OperationsController : ControllerBase {
             });
         } catch (Exception ex) {
             logger.LogError(ex.Message, ex);
-            return Problem("An error occured processing your request");
+            return StatusCode(500, new { error = "An internal error occured processing your request" });
         }
     }
 }
