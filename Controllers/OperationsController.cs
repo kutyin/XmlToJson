@@ -16,10 +16,10 @@ namespace XmlToJson.Controllers;
 public class OperationsController : ControllerBase {
 
     private readonly ILogger<OperationsController> logger;
-    private readonly string? csvPath;
+    //private readonly string? csvPath;
     public OperationsController(ILogger<OperationsController> logger,
                                 IOptions<SaveCsvOptions> options) {
-        csvPath = options.Value.Path;
+        //csvPath = options.Value.Path;
         this.logger = logger;
     }
 
@@ -63,6 +63,8 @@ public class OperationsController : ControllerBase {
                 string csvRow = $"{operation.Id},{operation.Barcode},{operation.Type},{operation.Category},{operation.Date},{operation.Zip}";
                 csvBuilder.AppendLine(csvRow);
             }
+
+            string? csvPath = param.Path;
 
             if (string.IsNullOrWhiteSpace(csvPath)) {
                 return Problem("Export path not set");
