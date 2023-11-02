@@ -60,7 +60,7 @@ public class OperationsController : ControllerBase {
 
             foreach (OperationModel operation in responseModel?.Operations ?? Enumerable.Empty<OperationModel>()) {
 
-                string csvRow = $"{operation.Id},{operation.Barcode},{operation.Type},{operation.Category},{operation.Date},{operation.Zip}";
+                string csvRow = $"{operation.Id},{operation.Barcode},{operation.Type},{operation.Category},{operation.Date:s},{operation.Zip}";
                 csvBuilder.AppendLine(csvRow);
             }
 
