@@ -16,10 +16,8 @@ namespace XmlToJson.Controllers;
 public class OperationsController : ControllerBase {
 
     private readonly ILogger<OperationsController> logger;
-    //private readonly string? csvPath;
-    public OperationsController(ILogger<OperationsController> logger,
-                                IOptions<SaveCsvOptions> options) {
-        //csvPath = options.Value.Path;
+
+    public OperationsController(ILogger<OperationsController> logger) {
         this.logger = logger;
     }
 
