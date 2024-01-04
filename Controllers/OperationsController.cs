@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 using System.Net.Http.Headers;
 using System.Text;
@@ -13,13 +12,10 @@ namespace XmlToJson.Controllers;
 
 [Route("operations")]
 [ApiController]
-public class OperationsController : ControllerBase {
+public class OperationsController(ILogger<OperationsController> logger)
+    : ControllerBase {
 
-    private readonly ILogger<OperationsController> logger;
-
-    public OperationsController(ILogger<OperationsController> logger) {
-        this.logger = logger;
-    }
+    private readonly ILogger<OperationsController> logger = logger;
 
     [HttpPost]
     public async Task<IActionResult> Get(GetOperationParameters param) {

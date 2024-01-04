@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 
 [XmlRoot("response")]
 public class ResponseModel {
+    
     [XmlElement("operation")]
     public List<OperationModel> Operations { get; set; } = new();
 
@@ -14,5 +15,3 @@ public class ResponseModel {
     [XmlAttribute("state")]
     public int State { get; set; }
 }
-
-
