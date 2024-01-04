@@ -1,13 +1,13 @@
 {
-  "$schema": "http://json.schemastore.org/launchsettings.json",
-  "profiles": {
-    "XmlToJsonService": {
-      "commandName": "Project",
-      "launchBrowser": false,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:10939"
+    "$schema": "http://json.schemastore.org/launchsettings.json",
+    "profiles": {
+        "XmlToJsonService": {
+            "commandName": "Project",
+            "launchBrowser": false,
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "applicationUrl": "http://localhost:10941"
+        }
     }
-  }
 }

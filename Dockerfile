@@ -6,8 +6,7 @@ WORKDIR /App
 COPY . ./
 
 # Expose the ports your application will listen on
-EXPOSE 10939
-EXPOSE 10940
+EXPOSE 10941
 
 # Restore as distinct layers
 RUN dotnet restore
@@ -18,8 +17,5 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /App
 COPY --from=build-env /App/out .
-
-# Set the ASPNETCORE_URLS environment variable for the runtime stage
-ENV ASPNETCORE_URLS=http://+:10939;https://+:10940
 
 ENTRYPOINT ["dotnet", "XmlToJson.dll"]
