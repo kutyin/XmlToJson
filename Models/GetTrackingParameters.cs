@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace XmlToJson.Models; 
-public class GetOperationParameters {
+public class GetTrackingParameters {
 
     [Required]
     public string Url { get; set; } = string.Empty;

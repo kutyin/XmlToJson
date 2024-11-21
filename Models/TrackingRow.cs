@@ -1,9 +1,11 @@
 ﻿using System.Xml.Serialization;
+using XmlToJson.Helpers;
 
-namespace XmlToJson.Models; 
+namespace XmlToJson.Models;
 
 [XmlRoot("operation")]
-public class OperationModel {
+public class TrackingRow
+{
     private string id = string.Empty;
 
     [XmlAttribute("barcode")]
@@ -22,11 +24,15 @@ public class OperationModel {
     public int Zip { get; set; }
 
     [XmlIgnore]
-    public string Id {
-        get {
-            if (string.IsNullOrWhiteSpace(id)) {
-                id = HashHelper.HashValues(this);
+    public string Id
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                id = this.GetSha256Hash();
             }
+
             return id;
         }
     }

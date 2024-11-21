@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 
 [XmlRoot("response")]
-public class ResponseModel {
+public class WmsResponse {
     
     [XmlElement("operation")]
-    public List<OperationModel> Operations { get; set; } = new();
+    public List<TrackingRow> Operations { get; set; } = [];
 
     [XmlAttribute("upd_seq")]
     public long UpdateSequence { get; set; }
