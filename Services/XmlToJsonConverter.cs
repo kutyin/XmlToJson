@@ -28,11 +28,15 @@ public class XmlToJsonConverter
         JArray sorted;
         if (!desc)
         {
+#pragma warning disable CS8604 // Possible null reference argument.
             sorted = new(array.OrderBy(obj => (DateTime)obj[sort_by]));
+#pragma warning restore CS8604 // Possible null reference argument.
         }
         else
         {
+#pragma warning disable CS8604 // Possible null reference argument.
             sorted = new(array.OrderByDescending(obj => (DateTime)obj[sort_by]));
+#pragma warning restore CS8604 // Possible null reference argument.
         }
 
         return sorted.ToString();

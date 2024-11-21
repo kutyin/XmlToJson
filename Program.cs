@@ -9,7 +9,10 @@ builder.Services.Configure<KestrelServerOptions>(options => {
 });
 
 builder.Services.AddScoped<TrackingCsvBuilder>()
-    .AddScoped<XmlToJsonConverter>();
+    .AddScoped<XmlToJsonConverter>()
+    .AddScoped<WmsClient>();
+
+builder.Services.AddHttpClient();
 
 WebApplication app = builder.Build();
 
