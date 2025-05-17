@@ -23,6 +23,7 @@ public class OperationsController(ILogger<OperationsController> logger)
         try {
 
             using HttpClient client = new();
+            client.Timeout = TimeSpan.FromMinutes(20);
             client.BaseAddress = new Uri(param.Url);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
 
